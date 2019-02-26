@@ -1,5 +1,42 @@
 <?php
 
+$workers = [
+
+    'prioritised' => [
+        'connection' => 'redis',
+        'queue' => [env('Q_PR_URGENT'),env('Q_PR_HIGH'),env('Q_PR_MEDIUM'),env('Q_PR_LOW')],
+        'balance' => 'false',
+        'processes' => 3,
+        'tries' => 1,
+    ],
+
+    'qos' => [
+        'connection' => 'redis',
+        'queue' => [env('Q_QOS_USER_INTERACTIVE'),env('Q_QOS_USER_INITIATED'),env('Q_QOS_UTILITY'),env('Q_QOS_BACKGROUND')],
+        'balance' => 'false',
+        'processes' => 3,
+        'tries' => 1,
+    ],
+
+    'serialised' => [
+        'connection' => 'redis',
+        'queue' => [env('Q_SERIAL')],
+        'balance' => 'false',
+        'processes' => 1,
+        'tries' => 1,
+    ],
+
+    'long-running' => [
+        'connection' => 'redis-long-running',
+        'queue' => [env('Q_LONG_RUNNING')],
+        'balance' => 'false',
+        'processes' => 1,
+        'tries' => 1,
+    ],
+
+
+];
+
 return [
 
     /*
@@ -113,24 +150,8 @@ return [
     */
 
     'environments' => [
-        'production' => [
-            'supervisor-1' => [
-                'connection' => 'redis',
-                'queue' => ['default'],
-                'balance' => 'simple',
-                'processes' => 10,
-                'tries' => 3,
-            ],
-        ],
-
-        'local' => [
-            'supervisor-1' => [
-                'connection' => 'redis',
-                'queue' => ['default'],
-                'balance' => 'simple',
-                'processes' => 3,
-                'tries' => 3,
-            ],
-        ],
+        'production' => $workers ,
+        'staging' => $workers ,
+        'local' => $workers 
     ],
 ];

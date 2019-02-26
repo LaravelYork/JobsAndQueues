@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('QUEUE_CONNECTION', 'sync'),
+    'default' => env('QUEUE_CONNECTION', 'redis'),
 
     /*
     |--------------------------------------------------------------------------
@@ -60,9 +60,17 @@ return [
 
         'redis' => [
             'driver' => 'redis',
-            'connection' => 'default',
+            'connection' => 'queues',
             'queue' => env('REDIS_QUEUE', 'default'),
             'retry_after' => 90,
+            'block_for' => null,
+        ],
+
+        'redis-long-running' => [
+            'driver' => 'redis',
+            'connection' => 'queues',
+            'queue' => 'default',
+            'retry_after' => 1200,
             'block_for' => null,
         ],
 
@@ -82,6 +90,29 @@ return [
     'failed' => [
         'database' => env('DB_CONNECTION', 'mysql'),
         'table' => 'failed_jobs',
+    ],
+
+    'tubes' =>
+
+    [
+        'prioritised' => [
+            'urgent' => env('Q_PR_URGENT', 'pr_urgent'),
+            'high' => env('Q_PR_HIGH', 'pr_high'),
+            'medium' => env('Q_PR_MEDIUM', 'pr_medium'),
+            'low' => env('Q_PR_LOW', 'pr_low'),
+        ],
+
+        'qos' => [
+            'user_interactive' => env('Q_QOS_USER_INTERACTIVE', 'qos_user_interactive'), //Work that is interacting with the user, refreshing the user interface
+            'user_initiated' => env('Q_QOS_USER_INITIATED', 'qos_user_initiated'), //Work that the user has initiated and requires immediate results, creating a pdf document 
+            'utility' => env('Q_QOS_UTILITY', 'qos_utility'), //Work that may take some time to complete and doesn’t require an immediate result, sending an email
+            'background' => env('Q_QOS_BACKGROUND', 'qos_background'), //Work that operates in the background and isn’t visible to the user, such as indexing, synchronizing, and backups. 
+        ],
+
+        'serialised' => env('Q_SERIAL', 'serial'),
+
+        'long-running' => env('Q_LONG_RUNNING', 'long_running'),
+        
     ],
 
 ];
