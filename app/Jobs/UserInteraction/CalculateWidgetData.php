@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class CalculateWidgetData extends CoreJob {
 
     //tinker 
-    //Bus::dispatch( (new App\Jobs\UserInteraction\CalculateWidgetData() )->onQueue( config('queue.tubes.prioritised.urgent')) );
+    //Bus::dispatch( (new App\Jobs\UserInteraction\CalculateWidgetData() )->onQueue( config('queue.tubes.qos.user_interactive')) );
      
     public function handle(){
 
