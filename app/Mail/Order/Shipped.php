@@ -17,7 +17,7 @@ class Shipped extends CoreMailable
      */
     public function __construct()
     {
-        //
+        $this->queue = config('queue.tubes.qos.utility');
     }
 
     /**
