@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Jobs\UserInitiated;
+namespace App\Jobs\Serial;
 
 use App\Jobs\CoreJob;
 
 use Illuminate\Support\Str;
 
-class GeneratePdf extends CoreJob {
+class PerformDataTransaction extends CoreJob {
 
     //tinker 
-    //Bus::dispatch( (new App\Jobs\UserInitiated\GeneratePdf() )->onQueue( config('queue.tubes.prioritised.urgent')) );
+    //Bus::dispatch( (new App\Jobs\UserInitiated\GenerateReport() )->onQueue( config('queue.tubes.serialised')) );
      
     public function handle(){
 
