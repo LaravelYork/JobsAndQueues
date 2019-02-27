@@ -93,7 +93,6 @@ return [
     ],
 
     'tubes' =>
-
     [
         'prioritised' => [
             'urgent' => env('Q_PR_URGENT', 'pr_urgent'),
@@ -103,10 +102,10 @@ return [
         ],
 
         'qos' => [
-            'user_interactive' => env('Q_QOS_USER_INTERACTIVE', 'qos_user_interactive'), //Work that is interacting with the user, refreshing the user interface
-            'user_initiated' => env('Q_QOS_USER_INITIATED', 'qos_user_initiated'), //Work that the user has initiated and requires immediate results, creating a pdf document 
-            'utility' => env('Q_QOS_UTILITY', 'qos_utility'), //Work that may take some time to complete and doesn’t require an immediate result, sending an email
-            'background' => env('Q_QOS_BACKGROUND', 'qos_background'), //Work that operates in the background and isn’t visible to the user, such as indexing, synchronizing, and backups. 
+            'user_interactive' => env('Q_QOS_USER_INTERACTIVE', 'qos_user_interactive'), // Work that is interacting with the user, refreshing the user interface
+            'user_initiated' => env('Q_QOS_USER_INITIATED', 'qos_user_initiated'), // Work that the user has initiated and requires immediate results, creating a pdf document 
+            'utility' => env('Q_QOS_UTILITY', 'qos_utility'), // Work that may take some time to complete and doesn’t require an immediate result, sending an email
+            'background' => env('Q_QOS_BACKGROUND', 'qos_background'), // Work that operates in the background and isn’t visible to the user, such as indexing, synchronizing, and backups. 
         ],
 
         'serialised' => env('Q_SERIAL', 'serial'),

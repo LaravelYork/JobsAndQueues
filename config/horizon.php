@@ -4,7 +4,12 @@ $workers = [
 
     'prioritised' => [
         'connection' => 'redis',
-        'queue' => [env('Q_PR_URGENT'),env('Q_PR_HIGH'),env('Q_PR_MEDIUM'),env('Q_PR_LOW')],
+        'queue' => [
+            env('Q_PR_URGENT', 'pr_urgent'),
+            env('Q_PR_HIGH', 'pr_high'),
+            env('Q_PR_MEDIUM', 'pr_medium'),
+            env('Q_PR_LOW', 'pr_low')
+        ],
         'balance' => 'false',
         'processes' => 3,
         'tries' => 1,
@@ -12,7 +17,12 @@ $workers = [
 
     'qos' => [
         'connection' => 'redis',
-        'queue' => [env('Q_QOS_USER_INTERACTIVE'),env('Q_QOS_USER_INITIATED'),env('Q_QOS_UTILITY'),env('Q_QOS_BACKGROUND')],
+        'queue' => [
+            env('Q_QOS_USER_INTERACTIVE', 'qos_user_interactive'),
+            env('Q_QOS_USER_INITIATED', 'qos_user_initiated'),
+            env('Q_QOS_UTILITY', 'qos_utility'),
+            env('Q_QOS_BACKGROUND', 'qos_background')
+        ],
         'balance' => 'false',
         'processes' => 3,
         'tries' => 1,
@@ -20,7 +30,7 @@ $workers = [
 
     'serialised' => [
         'connection' => 'redis',
-        'queue' => [env('Q_SERIAL')],
+        'queue' => [env('Q_SERIAL', 'serial')],
         'balance' => 'false',
         'processes' => 1,
         'tries' => 1,
@@ -28,12 +38,11 @@ $workers = [
 
     'long-running' => [
         'connection' => 'redis-long-running',
-        'queue' => [env('Q_LONG_RUNNING')],
+        'queue' => [env('Q_LONG_RUNNING', 'long_running')],
         'balance' => 'false',
-        'processes' => 1,
+        'processes' => 2,
         'tries' => 1,
     ],
-
 
 ];
 
